@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: inspection #应用名称
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: classpath:/static/
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:sqlserver://rm-bp1086fgg6d76f4yqco.mysql.rds.aliyuncs.com:3306;DatabaseName=service_base
+    username: mysql_rw
+    password: 3301994411ZQzqZQ
+
+  freemarker:
+    enabled: true
+    cache: false
+    charset: UTF-8
+    check-template-location: true
+    content-type: text/html
+    template-loader-path: classpath:/templates/
+    request-context-attribute: request
+    suffix: .ftl
+
+
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+
+
+logging:
+  config: classpath:logback.xml
+
+swagger:
+  production: false
+  basic:
+    enable: true
+
+
+login:
+  accept:
+    urls: /user/login
+  replace: false
+
+
+
+
