@@ -12,8 +12,8 @@ spring:
     static-locations: classpath:/static/
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:sqlserver://rm-bp1086fgg6d76f4yqco.mysql.rds.aliyuncs.com:3306;DatabaseName=service_base
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://rm-bp1086fgg6d76f4yqco.mysql.rds.aliyuncs.com:3306/service_base
     username: mysql_rw
     password: 3301994411ZQzqZQ
 
@@ -32,6 +32,8 @@ server:
   port: 8080
   tomcat:
     uri-encoding: UTF-8
+    max-threads:  1500
+    max-connections: 10000
 
 
 logging:
