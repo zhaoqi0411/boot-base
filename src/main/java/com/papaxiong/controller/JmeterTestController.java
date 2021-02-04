@@ -41,6 +41,8 @@ public class JmeterTestController {
 
     @PostConstruct
     public void initBarrier() {
+
+        System.out.println("cores="+Runtime.getRuntime().availableProcessors());
         barrier = new CyclicBarrier(requestSize+1);   //有一个守护线程
         cl=new CountDownLatch(requestSize);
         executorService= Executors.newFixedThreadPool(32);
