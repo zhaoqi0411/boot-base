@@ -57,7 +57,7 @@ public class SpringRegistryConfig {
     public FilterRegistrationBean userFilterChain() {
         FilterRegistrationBean registration = new FilterRegistrationBean();
         registration.setFilter(loginFilter());
-        registration.addUrlPatterns("/inspect/*","/sys/*","/user/*");
+        registration.addUrlPatterns("/inspect/*");
         registration.setName("loginFilter");
         registration.setOrder(2);
         return registration;

@@ -107,7 +107,6 @@ public class JmeterTestController {
                 long ioStart = System.currentTimeMillis();
                 log.info("@@@@@@@@@start,time={}",ioStart);
 
-                List<SysUserDO> list = sysUserService.list();
                 log.info("@@@@@@@@@线程计算IO,计算完成,cost={}",System.currentTimeMillis()-ioStart);
 
                 log.info("@@@@@@@@@线程执行任务,计算完成,cost={}",System.currentTimeMillis()-tStart);

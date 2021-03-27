@@ -2,4 +2,48 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.papaxiong.mapper.SysUserMapper">
 
+
+    <resultMap id="BaseResultMap" type="com.papaxiong.model.po.SysUserDO">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="user_code" jdbcType="VARCHAR" property="userCode" />
+        <result column="user_name" jdbcType="VARCHAR" property="userName" />
+        <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="real_name" jdbcType="VARCHAR" property="realName" />
+        <result column="work_phone" jdbcType="VARCHAR" property="workPhone" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="salt" jdbcType="VARCHAR" property="salt" />
+        <result column="user_status" jdbcType="SMALLINT" property="userStatus" />
+        <result column="is_del" jdbcType="SMALLINT" property="isDel" />
+        <result column="version" jdbcType="INTEGER" property="version" />
+        <result column="ctime" jdbcType="TIMESTAMP" property="ctime" />
+        <result column="mtiem" jdbcType="TIMESTAMP" property="mtiem" />
+        <result column="dtime" jdbcType="TIMESTAMP" property="dtime" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, user_code, user_name, mobile, `password`, real_name, work_phone, email, salt,
+    user_status, is_del, version, ctime, mtiem, dtime
+  </sql>
+
+    <insert id="insert" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+    insert into sys_user (user_code, user_name, mobile,
+      `password`, real_name, work_phone,
+      email, salt, user_status,
+      is_del, version, ctime,
+      mtiem, dtime)
+    values (#{userCode,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR},
+      #{password,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{workPhone,jdbcType=VARCHAR},
+      #{email,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{userStatus,jdbcType=SMALLINT},
+      #{isDel,jdbcType=SMALLINT}, #{version,jdbcType=INTEGER}, #{ctime,jdbcType=TIMESTAMP},
+      #{mtiem,jdbcType=TIMESTAMP}, #{dtime,jdbcType=TIMESTAMP})
+  </insert>
+
+
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from
+            sys_user
+        
+    </select>
 </mapper>

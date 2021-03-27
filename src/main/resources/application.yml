@@ -50,6 +50,8 @@ login:
     urls: /user/login
   replace: false
 
+mybatis:
+   mapper-locations: classpath:/com/papaxiong/mapper/xml/*.xml
 
 
 

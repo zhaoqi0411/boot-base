@@ -1,9 +1,10 @@
 package com.papaxiong.mapper;
 
 import com.papaxiong.model.po.SysUserDO;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * <p>
@@ -15,6 +16,14 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 @Mapper
-public interface SysUserMapper extends BaseMapper<SysUserDO> {
+public interface SysUserMapper {
+
+
+     void insert(SysUserDO sysUser);
+
+
+      List<SysUserDO> queryAll();
+
+
 
 }

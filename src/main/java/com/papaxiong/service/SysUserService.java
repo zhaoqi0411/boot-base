@@ -1,10 +1,8 @@
 package com.papaxiong.service;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.papaxiong.model.dto.SysUserDTO;
 import com.papaxiong.model.dto.SysUserQueryDTO;
 import com.papaxiong.model.po.SysUserDO;
-import com.baomidou.mybatisplus.extension.service.IService;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author zhaoqi
  * @since 2021-02-02
  */
-public interface SysUserService extends IService<SysUserDO> {
+public interface SysUserService  {
 
 
     void saveUser(SysUserDTO user);
@@ -25,7 +23,6 @@ public interface SysUserService extends IService<SysUserDO> {
 
     SysUserDO getUser(SysUserQueryDTO query);
 
-    Page<SysUserDO> pageUser(SysUserQueryDTO page);
 
     void delUser(SysUserDTO dto);
 
