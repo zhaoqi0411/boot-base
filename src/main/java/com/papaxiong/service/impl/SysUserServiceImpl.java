@@ -1,5 +1,6 @@
 package com.papaxiong.service.impl;
 
+import cn.hutool.core.util.RandomUtil;
 import com.papaxiong.config.LoginConstant;
 import com.papaxiong.model.dto.SysUserDTO;
 import com.papaxiong.model.dto.SysUserQueryDTO;
@@ -10,11 +11,13 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 /**
  * <p>
@@ -29,30 +32,42 @@ public class SysUserServiceImpl implements SysUserService {
 
 
     @Autowired
+    private SysUserService sysUserService;
+
+
+
+    @Autowired
     private SysUserMapper sysUserMapper;
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional(rollbackFor = Exception.class,propagation = Propagation.REQUIRED)
     public void saveUser(SysUserDTO user) {
-//        AssertUtils.nonNull(user.getUserName(), "登录账号不能为空");
-//        AssertUtils.nonNull(user.getPassword(), "密码不能为空");
-//        AssertUtils.nonNull(user.getConfirmPassword(), "确认密码不能为空");
-//        AssertUtils.nonNull(user.getUserCode(), "用户编码不能为空");
-//        if (!user.getConfirmPassword().equals(user.getPassword())) {
-//            throw new BusinessBaseException("请确认两次输入的密码是否一致！");
-//        }
-//
-//        LambdaQueryWrapper<SysUserDO> distinctUserQuery =
-//                Wrappers.<SysUserDO>lambdaQuery()
-//                        .eq(SysUserDO::getIsDel, 0)
-//                        .and(i -> i.eq(SysUserDO::getUserCode, user.getUserCode())
-//                                .or()
-//                                .eq(SysUserDO::getUserName, user.getUserName()));
-//
-//        List<SysUserDO> distinctUsers = super.list(distinctUserQuery);
-//        if (!CollectionUtils.isEmpty(distinctUsers)) {
-//            throw new BusinessBaseException("已存在登录名/用户编码 的用户！");
-//        }
+
+
+
+        SysUserDO sysUserDO = new SysUserDO();
+        sysUserDO.setUserCode(RandomUtil.randomString("userCode",6));
+        sysUserDO.setUserName(RandomUtil.randomString("userName",6));
+
+        sysUserDO.setPassword(RandomUtil.randomString(12));
+        sysUserDO.setRealName(RandomUtil.randomString(5));
+        sysUserDO.setMobile(RandomUtil.randomString(11));
+        sysUserDO.setUserStatus(1);
+        sysUserDO.setIsDel(0);
+
+        sysUserDO.setVersion(1);
+        sysUserMapper.insert(sysUserDO);
+
+
+        List<SysUserDO> userDOS = sysUserMapper.queryAll();
+
+
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class,propagation = Propagation.REQUIRES_NEW)
+    public void updateUser(SysUserDTO user) {
+
         SysUserDO sysUser = new SysUserDO();
         BeanUtils.copyProperties(user, sysUser);
         sysUser.setPassword(DigestUtils.md5Hex(user.getPassword()+ LoginConstant.LOGIN_SALT));
@@ -61,11 +76,6 @@ public class SysUserServiceImpl implements SysUserService {
         sysUser.setCtime(new Date());
         sysUser.setVersion(1);
         sysUserMapper.insert(sysUser);
-        //role
-    }
-
-    @Override
-    public void updateUser(SysUserDTO user) {
 
     }
 

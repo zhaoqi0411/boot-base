@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+
+
+    <plugins>
+        <plugin interceptor="MyInterceptor"></plugin>
+    </plugins>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://rm-bp1086fgg6d76f4yqco.mysql.rds.aliyuncs.com:3306/service_base"/>
+                <property name="username" value="mysql_rw"/>
+                <property name="password" value="3301994411ZQzqZQ"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="com/papaxiong/mapper/xml/IdGeneratorMapper.xml"/>
+    </mappers>
+    
+
+    
+
+
+</configuration>

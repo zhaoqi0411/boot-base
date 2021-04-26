@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.util.unit.DataSize;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -28,6 +29,13 @@ public class SpringRegistryConfig {
     @Value("${springmvc.maxRequestSize:10MB}")
     private String maxRequestSize;
 
+
+
+    //restTemplate
+    @Bean
+    public RestTemplate restTemplate(){
+        return new RestTemplate();
+    }
 
 
     //文件上传

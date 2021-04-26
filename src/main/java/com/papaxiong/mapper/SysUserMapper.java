@@ -25,5 +25,5 @@ public interface SysUserMapper {
       List<SysUserDO> queryAll();
 
 
-
+    void update(SysUserDO sysUser);
 }

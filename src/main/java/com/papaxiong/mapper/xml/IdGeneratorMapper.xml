@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.papaxiong.mapper.IdGeneratorMapper">
+  <resultMap id="BaseResultMap" type="com.papaxiong.model.po.IdGeneratorDO">
+    <!--@mbg.generated-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="max_id" jdbcType="BIGINT" property="maxId" />
+    <result column="increment_step" jdbcType="INTEGER" property="incrementStep" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, max_id, increment_step, version
+  </sql>
+
+
+    <select id="getOne" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from
+            id_generator
+        where
+            id=#{id}
+    </select>
+
+  <update id="updateByVersion">
+    update
+        id_generator
+    set
+        version=#{generator.version},
+        max_id=#{generator.maxId}
+    where
+        version={oldVersion}
+
+  </update>
+</mapper>
