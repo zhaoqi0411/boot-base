@@ -60,4 +60,11 @@ support:
     enable: true
     accessKeyId: LTAI5tLYA4jUSkbL7uKdW8Q5
     accessKeySecret: vVCPVbP6QI2j1yOG0wSeIRklRLsry3
-
+  redis:
+    cluster:
+      enable: true
+      expire-seconds: 120
+      command-timeout: 5000
+      nodes: 47.110.48.233:6379,47.110.48.233:6380,47.110.48.233:6381,47.110.48.233:6382,47.110.48.233:6383,47.110.48.233:6384
+      max-redirects: 3
+      password: qinghe

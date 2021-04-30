@@ -164,7 +164,15 @@
             <version>3.10.2</version>
         </dependency>
 
-        
+
+        <dependency>
+            <!-- springboot的parents依赖中有对版本号的控制，此处不需要添加版本号相关信息 -->
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
+
+
+
 
 
 
