@@ -53,3 +53,11 @@ login:
 
 
 
+
+# 一些额外的功能 可开可不开
+support:
+  oss:
+    enable: true
+    accessKeyId: LTAI5tLYA4jUSkbL7uKdW8Q5
+    accessKeySecret: vVCPVbP6QI2j1yOG0wSeIRklRLsry3
+

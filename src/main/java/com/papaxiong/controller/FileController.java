@@ -29,7 +29,7 @@ import java.util.Objects;
 @Slf4j
 public class FileController {
 
-    @Autowired
+    @Autowired(required = false)
     private OSS ossClient;
 
 
